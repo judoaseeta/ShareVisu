@@ -1,0 +1,14 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.app {
+    text-align: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    & a:visited {
+        color: white;
+    }
+}
