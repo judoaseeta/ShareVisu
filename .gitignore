@@ -105,3 +105,4 @@ dist
 
 # dist(webpack compiled directory)
 dist/
+storybook-static/
