@@ -4,6 +4,6 @@
   * Webpack(with Webpack-Dev-Server)
   * ServerSide Rendering
   * Code-Splitting with Loadable-Component
-  * SCSS(You can use CSS-in-JS such as Styled-Component)
-  * Unit-test support with Jest.
-  * Visual Regression Testing with Storybook.
+  * SCSS, styled-component
+  * Unit-test support with Jest, React-testing-library.
+  * Visual Regression Testing with Storybook v6.0
