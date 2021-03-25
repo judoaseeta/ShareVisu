@@ -1,0 +1,19 @@
+.page {
+    width: 95vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    & .holder {
+        width: 100%;
+        display: none;
+        &.instep {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &:nth-child(1), &:nth-child(2) {
+            height: 4rem;
+        }
+    }
+}

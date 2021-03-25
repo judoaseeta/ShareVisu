@@ -1,0 +1,22 @@
+.label {
+    font-size: 0.9rem;
+    text-anchor: end;
+    user-select: none;
+    font-style: italic;
+    fill:#2d3436;
+    &.x {
+        fill: red;
+        fill-opacity: 0.4;
+    }
+    &.y {
+        fill: blue;
+        fill-opacity: 0.4;
+    }
+}
+.title {
+    font-size: 1.1rem;
+    text-anchor: middle;
+    user-select: none;
+    fill: black;
+    font-weight: bold;
+}

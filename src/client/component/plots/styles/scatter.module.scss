@@ -1,0 +1,12 @@
+.dot {
+    fill: black;
+    &.selected {
+        fill: red;
+    }
+    &.unselected {
+        fill: #b2bec3;
+    }
+}
+.plot {
+    fill: #ecf0f1;
+}

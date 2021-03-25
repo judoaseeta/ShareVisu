@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    width: 100%;
+    height: 3rem;
+    list-style: none;
+    grid-template-columns: repeat(4, 1fr);
+}
+.step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.2;
+    color: white;
+    font-size: 0.9rem;
+    font-style: bold;
+    padding: 0.2rem;
+    user-select: none;
+    &.0 {
+        background-color: #0984e3;
+    }
+    &.1 {
+        background-color: #e84393;
+    }
+    &.2 {
+        background-color: #16a085;
+    }
+    &.3 {
+        background-color: #d63031;
+    }
+    &.selected {
+        opacity: 1;
+        text-decoration: underline;
+    }
+    &.clickable {
+        &:hover {
+            opacity: 0.8;
+        }
+        cursor: pointer;
+    }
+}

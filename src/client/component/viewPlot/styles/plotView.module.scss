@@ -1,0 +1,30 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem, 1fr;
+}
+.header {
+    padding: 0.3rem;
+    padding-left: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+.goback {
+    padding: 0.2rem;
+    font-size: 1.1rem;
+    height: 2rem;
+    background-color: #8e44ad;
+    color: white;
+    border:none;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7;
+    }
+}
+.view {
+    height: 80vh;
+    width: 90vw;
+    margin: 0 auto;
+}

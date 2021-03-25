@@ -1,0 +1,19 @@
+.container {
+    border: 0.1rem solid black;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+    padding: 0.3rem;
+    &:first-child {
+        border-top: 0.1rem solid black;
+    }
+    &:visited {
+        color: black;
+    }
+    &:hover {
+        background-color: rgba(green,0.2);
+        text-decoration: underline;
+    }
+}

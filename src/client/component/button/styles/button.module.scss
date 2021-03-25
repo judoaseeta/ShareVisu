@@ -1,0 +1,12 @@
+.button {
+    padding: 0.4rem;
+    min-width: 4rem;
+    margin-top: 1rem;
+    border: 0.1rem solid orangered;
+    background-color: #0984e3;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7;
+    }
+}

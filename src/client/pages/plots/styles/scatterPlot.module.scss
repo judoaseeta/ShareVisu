@@ -1,0 +1,10 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 20rem;
+    width: 100%;
+    height: 60vh;
+    & .plotHolder {
+        width: 100%;
+        height: 60vh;
+    }
+}

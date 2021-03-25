@@ -3,12 +3,14 @@ body {
     margin: 0;
     box-sizing: border-box;
 }
+h1,h2,h3,h4,h5,h6,ul,ol,li,nav   {
+    margin: 0;
+    padding: 0;
+}
 .app {
     text-align: center;
-    height: 100vh;
-    background-color: black;
-    color: white;
+    color: black;
     & a:visited {
-        color: white;
+        color: black;
     }
 }

@@ -1,17 +1,40 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+// pages
+import CreatePlot from './client/component/createPlot/createPlot';
+import PlotBase from './client/pages/plots/';
+import Plot from './client/pages/plotViews/plot';
+import Main from './client/pages/main';
+import Nav from './client/component/nav';
 // import 
 import './style/app.scss';
-import styles from './style/app.module.scss';
 
-const App: React.FC<{}> = () =>
-<article className="app">
-    <section>
-        <h1 
-            className={styles.title}
-            data-testid={'title'}
-        >Roy's React SSR Boilerplate</h1>
-        <a href="https://github.com/judoaseeta/reactSSR" target="_blink">Go to the Github repository </a>
-    </section>
-</article>;
-
+const App: React.FC<{}> = () => {
+    return (
+        <article className="app">
+            <Route 
+                path="*"
+                component={Nav}
+            />
+            <Route 
+                path="/"
+                exact
+                component={Main}
+            />
+            <Route 
+                path="/plot/:sk"
+                component={Plot}
+            />
+            <Route 
+                path="/createPlot"
+                component={CreatePlot}
+                exact
+            />
+            <Route 
+                path="/createPlot/:plot"
+                component={PlotBase}
+            />
+        </article>
+    )
+}
 export default App;

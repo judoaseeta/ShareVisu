@@ -16,7 +16,7 @@ module.exports = api => {
             [
                 '@babel/preset-env',
                 {
-                    useBuiltIns: web? 'entry' : undefined,
+                    
                     targets: !web ? { node : 'current'} : undefined,
                     modules: webpack ? false : 'commonjs'
                 }

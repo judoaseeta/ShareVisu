@@ -1,0 +1,65 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.selector_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+    .label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left:1rem;
+        position: relative;
+        user-select: none;
+        cursor:pointer;
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0.6rem;
+            content: '';
+        }
+        &.xKey::before {
+            background-color: rgba(red,0.3);
+        }
+        &.yKey::before {
+            background-color: rgba(blue,0.3);
+        }
+        &.zKey::before {
+            background-color: rgba(green,0.3);
+        }
+    }
+}
+.labelError {
+    padding-left: 1rem;
+    color: red;
+    user-select: none;
+    position: relative;
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1rem;
+        width: 0.6rem;
+        content: '';
+    }
+    &.xKey::before {
+        background-color: rgba(red,0.3);
+    }
+    &.yKey::before {
+        background-color: rgba(blue,0.3);
+    }
+    &.zKey::before {
+        background-color: rgba(green,0.3);
+    }
+}
