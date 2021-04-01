@@ -4,7 +4,7 @@
   "description": "ShareVisu",
   "main": "index.js",
   "scripts": {
-    "start": "ENV NODE_ENV=production node ./dist/server.js",
+    "start": "ENV NODE_ENV=production node dist/server",
     "dev": "webpack-dev-server --env=dev --profile --colors",
     "test": "jest",
     "test:watch": "jest --watch",
