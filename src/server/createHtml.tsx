@@ -15,6 +15,7 @@ export default (
         <!DOCTYPE html>
         <html lang="eng">
             <head>
+                <link rel="icon" type="image/png" href="/assets/favicon.png" />
                 <meta name="viewport" content="width=device-width, user-scalable=no">
                 <meta name="google" content="notranslate">
                 ${helmet.title.toString()}
@@ -24,8 +25,7 @@ export default (
                 <link rel="stylesheet" href="/web/main.css" type="text/css">
             </head>
             <body>
-                <div id="root">${html}</div>   
-                <script type="text/javascript" src=""></script>
+                <div id="root">${html}</div>
                 ${extractor.getScriptTags()}
             </body>
         </html>

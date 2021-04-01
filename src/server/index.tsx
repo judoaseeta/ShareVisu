@@ -29,7 +29,7 @@ if(process.env.NODE_ENV !== 'production') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-
+app.use('/assets',express.static(path.resolve(path.parse(__dirname).dir,'assets')));
 app.use('/web',express.static(path.resolve(__dirname,'web')));
 app.get('*',(req,res) => {
     const nodeStats = path.resolve(__dirname,'./node/loadable-stats.json');
