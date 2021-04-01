@@ -8,7 +8,7 @@
     "start:dev": "webpack-dev-server --env=dev --profile --colors",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "rm -rf dist/ && NODE_ENV=production npm run build:client && NODE_ENV=production npm run build:server",
+    "build": "rm -rf dist/ && NODE_ENV=production npm run build:client && npm run build:server",
     "build:dev": "rm -rf dist/ && NODE_ENV=development npm run build:client && NODE_ENV=development npm run build:server",
     "build:server": "webpack --env=server --progress --profile --colors",
     "build:client": "webpack --env=client --progress --profile --colors",
@@ -26,6 +26,9 @@
   },
   "homepage": "https://github.com/judoaseeta/reactSSR#readme",
   "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
     "@babel/runtime": "^7.13.10",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
@@ -46,9 +49,6 @@
     "use-react-dimensions": "^1.0.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.13.0",
     "@loadable/babel-plugin": "^5.13.2",
