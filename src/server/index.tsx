@@ -13,6 +13,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import createHtml from './createHtml';
 
 const app = express();
+console.log(process.env.NODE_ENV);
 if(process.env.NODE_ENV !== 'production') {
     const webpackConfig = require('../../.webpack/webpack.client.js').map((config:any) => {
         config.output.path = config.output.path.replace('dist/dist/','dist/');

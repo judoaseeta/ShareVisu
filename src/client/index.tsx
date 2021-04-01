@@ -26,9 +26,11 @@ const renderFunc = (renderMethod:Renderer) => {
     () => console.log('rendered!!')
     )
 }
+console.log(process.env.NODE_ENV);
 if(process.env.NODE_ENV === 'development' && typeof module.hot !== 'undefined') {
     renderFunc(render);
     module.hot.accept();
 } else {
+    console.log('production')
     loadableReady(() => renderFunc(hydrate))
 }

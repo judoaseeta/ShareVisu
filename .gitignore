@@ -104,5 +104,4 @@ dist
 .tern-port
 
 # dist(webpack compiled directory)
-dist/
 storybook-static/
