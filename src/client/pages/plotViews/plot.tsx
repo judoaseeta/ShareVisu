@@ -4,9 +4,13 @@ import {
     RouteComponentProps,
     useHistory
 } from 'react-router-dom';
+//components 
+import HelmetComponent from '../../component/helmet';
 import PlotView from '../../component/viewPlot/plotView';
+// hooks
 import UsePlot from '../../hooks/usePlot';
-
+//
+import plotTypeToText from '../../utils/plotTypeToText';
 type PlotProps = {} &RouteComponentProps<{sk: string}>;
 const Plot: React.FC<PlotProps> = ({
     match: {
@@ -23,6 +27,12 @@ const Plot: React.FC<PlotProps> = ({
     ]);
     const plot = UsePlot(sk);
     return <div>
+        <HelmetComponent 
+            title={plot ? plot.title : 'Loading Plot..'}
+            description={plot ? `${plot.title} - ${plotTypeToText(plot.plotType)} - (${plot.xLabel} - ${plot.xKey}) - (${plot.yLabel} - ${plot.yKey})`
+            : 'Plot'
+        }
+        />
         {
             plot &&
             <PlotView 

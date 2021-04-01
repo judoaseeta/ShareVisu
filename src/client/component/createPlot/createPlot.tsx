@@ -12,7 +12,6 @@ const plots = [
     {
         name: '라인 플랏',
         path: 'line',
-        unavailable: true,
     },
     {
         name: '박스 플랏',
@@ -39,10 +38,12 @@ const CreatePlot: React.FC = () =>
                 <Link
                     className={styles.plotItem}
                     to={`/createPlot/${path}`}
+                    key={path}
                 >
                     <li>{name}</li>
                 </Link> 
                 : <li
+                    key={path}
                     className={`${styles.plotItem} ${styles.unavailable}`}
                 >{name}</li>
             )

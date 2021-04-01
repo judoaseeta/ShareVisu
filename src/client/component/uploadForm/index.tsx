@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../component/button';
 import { PlotType } from '../../types';
 import PlotTypeToText from '../../utils/plotTypeToText';
-
+import { checkIsKeySelected } from '../../utils/checkDatas';
 import styles from './styles/uploadForm.module.scss';
 
 interface UploadFormProps {
@@ -52,7 +52,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
             <p>Y-Key: {yKey}</p>
         }
         {
-            zKey &&
+            checkIsKeySelected(zKey) &&
             <p>Z-Key: {zKey}</p>
         }
     </div>

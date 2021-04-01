@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import LinePlot from '../../pages/plots/linePlot';
 import ScatterPlot from '../../pages/plots/scatterPlot';
 import { Plot } from '../../api';
 import styles from './styles/plotView.module.scss';
@@ -33,6 +33,12 @@ const PlotView: React.FC<PlotViewProps> = ({
             <ScatterPlot
                 {...plot}
             /> 
+        }
+        {
+            plot.plotType === 'line' &&
+            <LinePlot 
+                {...plot}
+            />
         }
     </main>
 </section>

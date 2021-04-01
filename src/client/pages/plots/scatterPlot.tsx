@@ -7,7 +7,7 @@ import Stats from '../../component/plots/stats';
 import UseScatter from '../../hooks/useScatter';
 // styles
 import classnames from 'classnames/bind';
-import styles from './styles/scatterPlot.module.scss';
+import styles from './styles/plot.module.scss';
 const cx = classnames.bind(styles);
 
 interface ScatterPlotProps {
@@ -41,7 +41,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
         marginBottom: 50,
         width: 100,
         height: 50
-    })
+    });
     const {
         xScale,
         yScale,

@@ -29,7 +29,8 @@ if(process.env.NODE_ENV !== 'production') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-app.use('/assets',express.static(path.resolve(__dirname,'assets')));
+
+app.use('/web',express.static(path.resolve(__dirname,'web')));
 app.get('*',(req,res) => {
     const nodeStats = path.resolve(__dirname,'./node/loadable-stats.json');
     const webStats = path.resolve(__dirname, './web/loadable-stats.json');
@@ -56,4 +57,5 @@ app.get('*',(req,res) => {
         webExtractor,
     ));
 });
-app.listen(3000, () => console.log('app is listening'));
+
+app.listen(process.env.PORT || 3000, () => console.log('app is listening'));

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-// pages
-import CreatePlot from './client/component/createPlot/createPlot';
-import PlotBase from './client/pages/plots/';
-import Plot from './client/pages/plotViews/plot';
-import Main from './client/pages/main';
+import loadable from '@loadable/component';
+
+
 import Nav from './client/component/nav';
 // import 
 import './style/app.scss';
-
+// pages 
+const LoadPlotView = loadable(() => import('./client/pages/plotViews/plot'));
+const LoadCraetePlot = loadable(() => import('./client/component/createPlot/createPlot'));
+const LoadPlotBase = loadable(() => import('./client/pages/plots/'));
+const LoadMain = loadable(() => import('./client/pages/main'));
 const App: React.FC<{}> = () => {
     return (
         <article className="app">
@@ -19,20 +21,20 @@ const App: React.FC<{}> = () => {
             <Route 
                 path="/"
                 exact
-                component={Main}
+                component={LoadMain}
             />
             <Route 
                 path="/plot/:sk"
-                component={Plot}
+                component={LoadPlotView}
             />
             <Route 
                 path="/createPlot"
-                component={CreatePlot}
+                component={LoadCraetePlot}
                 exact
             />
             <Route 
                 path="/createPlot/:plot"
-                component={PlotBase}
+                component={LoadPlotBase}
             />
         </article>
     )

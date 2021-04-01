@@ -1,0 +1,16 @@
+.legend {
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    &.unselected {
+        opacity: 0.25;
+    }
+    &.selected {
+        opacity: 1;
+    }
+    &:hover {
+        text-decoration: underline;
+        opacity: 1;
+    }
+}

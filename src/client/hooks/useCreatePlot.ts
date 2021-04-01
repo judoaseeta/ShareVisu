@@ -7,12 +7,13 @@ import {
 } from 'react';
 import { useHistory } from 'react-router-dom';
 import { csvParse } from 'd3-dsv';
-import { checkIsNumOrFraction } from '../utils/checkDatas';
+import { checkIsKeySelected, checkIsNumOrFraction } from '../utils/checkDatas';
 import { PlotType } from '../types';
 import {
     addPlot,
     AddPlotArgs
 } from '../api';
+import plot from '../pages/plotViews/plot';
 
 interface UseCreatePlotProps {
     plotType: PlotType;
@@ -117,15 +118,33 @@ const UseCreatePlot = ({
                 } else {
                     return '';
                 }
+            } else if(plotType === 'line') {
+                if(!isEveryYLabelNumeric) {
+                    return '스캐터 플랏의 Y축 키에 할당되는 값은 정수 혹은 소수의 숫자여야 합니다.';
+                } else {
+                    return '';
+                }
             }
         } else if(data) {
             if(plotType === 'scatter') {
-                return '(스캐터 플랏)Y축 키에 정수 혹은 소수인 레이블을 할당하세요'
+                return '(스캐터 플랏)Y축 키에 정수 혹은 소수인 레이블을 할당하세요';
+            } else if (plotType === 'line') {
+                return '(스캐터 플랏)Y축 키에 정수 혹은 소수인 레이블을 할당하세요';
             }
         }
     },[
         data,
         yKey,
+        plotType
+    ]);
+
+    const zLabelError = useMemo(() => {
+        if(plotType === 'line') {
+            
+        }
+    },[
+        data,
+        zKey,
         plotType
     ]);
     /// if parsedFile , parse CSV
@@ -150,7 +169,7 @@ const UseCreatePlot = ({
         headers
     ]);
     const selectZKey = useCallback((key: string) => {
-        if(headers && key !== '-' && headers.includes(key)) {
+        if(headers && headers.includes(key)) {
             setZkey(key);
         }
     },[
@@ -167,15 +186,18 @@ const UseCreatePlot = ({
 
 
     const onKeyConfirm = useCallback(() => {
-        if(xKey && yKey && !xLabelError && !yLabelError) {
-            setStep(2);
+        if(plotType === 'scatter' || plotType === 'line') {
+            if(xKey && yKey && !xLabelError && !yLabelError) {
+                setStep(2);
+            }
         }
     },[
         xKey,
         yKey,
         zKey,
         xLabelError,
-        yLabelError
+        yLabelError,
+        plotType
     ]);
 
     /// reset all data
@@ -198,6 +220,7 @@ const UseCreatePlot = ({
 
     const [ xLabel, setXLabel ] = useState(`X-LABEL(${xKey})`);
     const [ yLabel, setYLabel ] = useState(`Y-LABEL(${yKey})`);
+    const [ zLabel, setZLabel ] = useState(`Z-LABEL(${zKey})`);
     const [ title, setTitle ] = useState(`PLOT-${fileName}`);
     const onXLabelChange:React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
         setXLabel(e.target.value);
@@ -205,18 +228,25 @@ const UseCreatePlot = ({
     const onYLabelChange:React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
         setYLabel(e.target.value);
     },[]);
+    const onZLabelChange:React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
+        setZLabel(e.target.value);
+    },[]);
     const onTitleChange:React.ChangeEventHandler<HTMLInputElement> = useCallback((e) => {
         setTitle(e.target.value);
     },[]);
     const onSubmit:React.FormEventHandler = useCallback((e) => {
         e.preventDefault();
-        if(xLabel && yLabel && title) {
+        if(plotType === 'scatter' && xLabel && yLabel && title) {
+            setStep(3);
+        } else if(plotType === 'line' && xLabel && yLabel && zLabel&& title) {
             setStep(3);
         }
     },[
         xLabel,
         yLabel,
-        title
+        zLabel,
+        title,
+        plotType
     ]);
     const toStep3 = useCallback(() => {
         setStep(2);
@@ -261,12 +291,57 @@ const UseCreatePlot = ({
                         plotType    
                     });
                 }
+            } else if(plotType === 'line') { 
+                if(xLabel && yLabel && data && xKey && yKey) {
+                    
+                    if(checkIsKeySelected(zKey) && zLabel) {
+                        const PickedData = data.map(d => ({
+                            [xKey] : d[xKey],
+                            [yKey] : d[yKey],
+                            [zKey] : d[zKey]
+                        }));
+                    
+                        UploadPlot(
+                            {
+                                title,
+                                xKey,
+                                yKey,
+                                zKey,
+                                xLabel,
+                                yLabel,
+                                zLabel,
+                                data: PickedData,
+                                plotType    
+                            }
+                        );
+                    } else {
+                        const PickedData = data.map(d => ({
+                            [xKey] : d[xKey],
+                            [yKey] : d[yKey]
+                        }));    
+                        UploadPlot(
+                            {
+                                title,
+                                xKey,
+                                yKey,
+                                xLabel,
+                                yLabel,
+                                data: PickedData,
+                                plotType    
+                            }
+                        );
+                    }
+                }
             }
         }
     },[
         step,
         xKey,
-        
+        yKey,
+        xLabel,
+        yLabel,
+        zKey,
+        zLabel
     ]);
 
     return {
@@ -283,11 +358,13 @@ const UseCreatePlot = ({
         isUploading,
         xLabel,
         yLabel,
+        zLabel,
         title,
         step,
         onSubmit,
         onXLabelChange,
         onYLabelChange,
+        onZLabelChange,
         onTitleChange,
         selectXKey,
         selectYKey,

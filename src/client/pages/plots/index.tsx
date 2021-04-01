@@ -4,6 +4,7 @@ import {
     RouteComponentProps
 } from 'react-router-dom';
 //components 
+import HelmetComponent from '../../component/helmet';
 import Button from '../../component/button';
 import Loading from '../../component/loading';
 import Stepper from '../../component/stepper';
@@ -13,6 +14,7 @@ import LabelsForm from '../../component/labelsForm';
 import UploadForm from '../../component/uploadForm';
 // page
 import ScatterPlot from './scatterPlot';
+import LinePlot from './linePlot';
 // hooks
 import useCreatePlot from '../../hooks/useCreatePlot';
 
@@ -51,11 +53,13 @@ const PlotBase: React.FC<PlotBaseProps> = ({
         zKey,
         xLabel,
         yLabel,
+        zLabel,
         title,
         step,
         onSubmit,
         onXLabelChange,
         onYLabelChange,
+        onZLabelChange,
         onTitleChange,
         selectXKey,
         selectYKey,
@@ -74,6 +78,10 @@ const PlotBase: React.FC<PlotBaseProps> = ({
     return <section
         className={cx('page')}
     >
+        <HelmetComponent 
+            title="당신만의 플랏을 만들어 보세요."
+            description="데이터 파일(CSV)을 불러오고, 테이블을 통해 데이터 유형을 파악합니다.각 축의 키를 고르고, 레이블의 이름을 정하고, 차트를 확인한 뒤 업로드하세요."
+        />
         <div
             className={cx('holder',{
                 instep: true
@@ -111,8 +119,10 @@ const PlotBase: React.FC<PlotBaseProps> = ({
                     isYDescent={isYdescent}
                     xKey={xKey}
                     yKey={yKey}
+                    zKey={zKey}
                     onXKeySelect={selectXKey}
                     onYKeySelect={selectYKey}
+                    onZKeySelect={selectZKey}
                     onXOrder={onXOrder}
                     onYOrder={onYOrder}
                     plotType={plot}
@@ -129,6 +139,7 @@ const PlotBase: React.FC<PlotBaseProps> = ({
                     samples={data.slice(0,10)}
                     xKey={xKey}
                     yKey={yKey}
+                    zKey={zKey}
                 />
             }
             <Button
@@ -144,11 +155,15 @@ const PlotBase: React.FC<PlotBaseProps> = ({
             <LabelsForm 
                 xLabel={xLabel}
                 yLabel={yLabel}
+                zLabel={zLabel}
+                zKey={zKey}
+                plotType={plot}
                 title={title}
                 onTitleChange={onTitleChange}
                 onSubmit={onSubmit}
                 onXLabelChange={onXLabelChange}
                 onYLabelChange={onYLabelChange}
+                onZLabelChange={onZLabelChange}
             />
         </div>
         <div
@@ -171,6 +186,22 @@ const PlotBase: React.FC<PlotBaseProps> = ({
                     yLabelError={yLabelError}
                 />
             }
+            {
+                plot ==='line' &&
+                <LinePlot 
+                    data={data}
+                    isYDescent={isYdescent}
+                    title={title}
+                    xLabel={xLabel}
+                    yLabel={yLabel}
+                    zLabel={zLabel}
+                    xKey={xKey}
+                    yKey={yKey}
+                    zKey={zKey}
+                    xLabelError={xLabelError}
+                    yLabelError={yLabelError}      
+                />
+            }
         </div>
         <div
             className={cx('holder',{
@@ -180,8 +211,10 @@ const PlotBase: React.FC<PlotBaseProps> = ({
             <UploadForm 
                 xKey={xKey}
                 yKey={yKey}
+                zKey={zKey}
                 xLabel={xLabel}
                 yLabel={yLabel}
+                zLabel={zLabel}
                 title={title}
                 plotType={plot}
                 onSubmit={onUploadSubmit}

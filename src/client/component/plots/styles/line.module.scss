@@ -1,0 +1,16 @@
+.plot {
+    fill: #ecf0f1;
+}
+.line {
+    stroke-width: 1;
+    opacity: 1;
+    &.unselected {
+        opacity: 0.05;
+    }
+    &.selected {
+        opacity: 1;
+    }
+    &.hovered {
+        opacity: 0.7;
+    }
+}

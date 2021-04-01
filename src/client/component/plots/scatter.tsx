@@ -8,7 +8,7 @@ import YAxis from '../numericAxis/numericYAxis';
 import XLabel from '../label/xLabel';
 import YLabel from '../label/yLabel';
 import Title from '../label/title';
-import { ScaleContinuousNumeric} from 'd3-scale';
+import { ScaleContinuousNumeric } from 'd3-scale';
 // utils
 import { isInScatterRange } from './utils'
 // styles

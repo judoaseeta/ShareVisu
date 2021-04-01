@@ -11,3 +11,14 @@ export const mockDimensions: ResizedDimensions = {
     boundedHeight: 300,
     isResized: true
 }
+export const mockDimensions2: ResizedDimensions = {
+    marginTop: 50,
+    marginBottom: 50,
+    marginLeft: 100,
+    marginRight: 200,
+    width: 1000,
+    boundedWidth: 700,
+    height: 400,
+    boundedHeight: 300,
+    isResized: true
+}

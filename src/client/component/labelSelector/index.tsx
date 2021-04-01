@@ -15,8 +15,10 @@ export interface LabelSelectorProps {
     zKey?: string;
     xLabelError?: string;
     yLabelError?: string;
+    zLabelError?: string;
     onXKeySelect: (key: string) => void;
     onYKeySelect?: (key: string) => void;
+    onZKeySelect?: (key: string) => void;
     onXOrder: React.ChangeEventHandler;
     onYOrder: React.ChangeEventHandler;
 }
@@ -27,11 +29,13 @@ const LabelSelector:React.FC<LabelSelectorProps>  = ({
     isYDescent,
     xLabelError,
     yLabelError,
+    zLabelError,
     xKey,
     yKey,
     zKey,
     onXKeySelect,
     onYKeySelect,
+    onZKeySelect,
     onXOrder,
     onYOrder
 }) => 
@@ -67,22 +71,25 @@ const LabelSelector:React.FC<LabelSelectorProps>  = ({
                 }
             </select>
         </div>
-        <div
-            className={cx('selector_wrapper')}
-        >
-            <label
-                className={cx('label',{
-                    xKey: true
-                })}
-                htmlFor="xDescent"
-            >X축 내림차순 설정: </label>
-            <input 
-                id="xDescent"
-                type="checkbox"
-                onChange={onXOrder}
-                checked={isXDescent}
-            />
-        </div>
+        {
+            (plotType === 'scatter') &&
+            <div
+                className={cx('selector_wrapper')}
+            >
+                <label
+                    className={cx('label',{
+                        xKey: true
+                    })}
+                    htmlFor="xDescent"
+                >X축 내림차순 설정: </label>
+                <input 
+                    id="xDescent"
+                    type="checkbox"
+                    onChange={onXOrder}
+                    checked={isXDescent}
+                />
+            </div>
+        }
         {
             xLabelError &&
             <p
@@ -93,7 +100,7 @@ const LabelSelector:React.FC<LabelSelectorProps>  = ({
         }
     </div>
     {
-        (plotType === 'scatter') &&
+        (plotType === 'scatter' || plotType === 'line') &&
         yKey &&
         onYKeySelect &&
         <div
@@ -126,21 +133,21 @@ const LabelSelector:React.FC<LabelSelectorProps>  = ({
                 </select>
             </div>
             <div
-                className={cx('selector_wrapper')}
-            >
-                <label
-                    className={cx('label',{
-                        yKey: true
-                    })}
-                    htmlFor="yDescent"
-                >Y축 내림차순 설정: </label>
-                <input 
-                    id="yDescent"
-                    type="checkbox"
-                    onChange={onYOrder}
-                    checked={isYDescent}
-                />
-            </div>
+                    className={cx('selector_wrapper')}
+                >
+                    <label
+                        className={cx('label',{
+                            yKey: true
+                        })}
+                        htmlFor="yDescent"
+                    >Y축 내림차순 설정: </label>
+                    <input 
+                        id="yDescent"
+                        type="checkbox"
+                        onChange={onYOrder}
+                        checked={isYDescent}
+                    />
+                </div>
             {
                 yLabelError &&
                 <p
@@ -148,6 +155,49 @@ const LabelSelector:React.FC<LabelSelectorProps>  = ({
                         yKey: true
                     })}
                 >{yLabelError}</p>
+            }
+        </div>
+    }
+    {
+        (plotType === 'line') && 
+        zKey &&
+        onZKeySelect &&
+        <div
+            className={cx('wrapper')}
+        >
+             <div
+                className={cx('selector_wrapper')}
+            >
+                <label
+                    htmlFor="zKey"
+                    className={cx('label',{
+                        zKey: true
+                    })}
+                >Z축 레이블(그룹화 레이블)</label>
+                <select
+                    id="zKey"
+                    value={zKey}
+                    onChange={(e) => onZKeySelect(e.target.value)}
+                >
+                    {
+                        headers.map((header,i) => 
+                            <option
+                                value={header}
+                                key={`option_y${i}`}
+                            >
+                                {header}
+                            </option>
+                        )
+                    }
+                </select>
+            </div>
+            {
+                zLabelError &&
+                <p
+                    className={cx('labelError',{
+                        zKey: true
+                    })}
+                >{zLabelError}</p>
             }
         </div>
     }

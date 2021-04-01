@@ -21,9 +21,11 @@ export default (
                 ${extractor.getLinkTags()}
                 ${extractor.getStyleTags()}
                 ${styleTags}
+                <link rel="stylesheet" href="/web/main.css" type="text/css">
             </head>
             <body>
-                <div id="root">${html}</div>    
+                <div id="root">${html}</div>   
+                <script type="text/javascript" src=""></script>
                 ${extractor.getScriptTags()}
             </body>
         </html>

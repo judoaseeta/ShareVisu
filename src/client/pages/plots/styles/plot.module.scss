@@ -3,6 +3,9 @@
     grid-template-columns: 1fr 20rem;
     width: 100%;
     height: 60vh;
+    &.full {
+        grid-template-columns: 1fr;
+    }
     & .plotHolder {
         width: 100%;
         height: 60vh;
