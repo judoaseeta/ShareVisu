@@ -44,6 +44,7 @@
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.1",
     "typescript": "^4.2.3",
     "use-react-dimensions": "^1.0.7"
