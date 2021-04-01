@@ -10,8 +10,8 @@ module.exports = {
     },
     output: {
         path: parts.resolveWithRoot('dist'),
-        filename: '[name].js',
-        chunkFilename: '[name].js',
+        filename: 'index.js',
+        chunkFilename: 'index.js',
     },
     module: {
         rules: [
