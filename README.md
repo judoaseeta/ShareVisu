@@ -1,9 +1,3 @@
-# React ServerSide Rendering Boilerplate
+# React SSR app for data visualization
 
-#### Features
-  * Webpack(with Webpack-Dev-Server)
-  * ServerSide Rendering
-  * Code-Splitting with Loadable-Component
-  * SCSS, styled-component
-  * Unit-test support with Jest, React-testing-library.
-  * Visual Regression Testing with Storybook v6.0
+Example app: <https://sharevisu.du.r.appspot.com/>
